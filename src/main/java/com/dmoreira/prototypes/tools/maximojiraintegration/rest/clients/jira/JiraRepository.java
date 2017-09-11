@@ -1,5 +1,10 @@
 package com.dmoreira.prototypes.tools.maximojiraintegration.rest.clients.jira;
 
+import com.dmoreira.prototypes.tools.maximojiraintegration.rest.clients.jira.models.JiraIssue;
+import com.dmoreira.prototypes.tools.maximojiraintegration.rest.clients.jira.models.requests.CreateHelpDeskIssue;
+
+import java.util.List;
+
 /**
  * DevStack Innovation
  * <p>
@@ -16,7 +21,9 @@ public interface JiraRepository {
      */
     public void findByDate();
 
-    public void save();
+    public List<JiraIssue> findByProjectKeyAndMaximoKey(String projectKey, String maximoKey);
+
+    public void save(CreateHelpDeskIssue issue);
 
     public void update();
 

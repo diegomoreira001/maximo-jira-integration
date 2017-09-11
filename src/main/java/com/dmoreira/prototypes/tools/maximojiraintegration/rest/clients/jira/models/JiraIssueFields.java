@@ -1,5 +1,7 @@
 package com.dmoreira.prototypes.tools.maximojiraintegration.rest.clients.jira.models;
 
+import com.dmoreira.prototypes.tools.maximojiraintegration.rest.clients.jira.models.JiraIssueType;
+import com.dmoreira.prototypes.tools.maximojiraintegration.rest.clients.jira.models.JiraProject;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -7,12 +9,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * <p>
  * Created by dmoreira <diegomoreira00@gmail.com> on 9/3/17.
  */
-public class HelpDeskIssueFields {
+public class JiraIssueFields {
 
     private JiraProject jiraProject;
     private String summary;
     private String description;
     private JiraIssueType jiraIssueType;
+    private String maximoKey;
 
     @JsonProperty(value = "project")
     public JiraProject getJiraProject() {
@@ -46,5 +49,14 @@ public class HelpDeskIssueFields {
 
     public void setJiraIssueType(JiraIssueType jiraIssueType) {
         this.jiraIssueType = jiraIssueType;
+    }
+
+    @JsonProperty("customfield_12840")
+    public String getMaximoKey() {
+        return maximoKey;
+    }
+
+    public void setMaximoKey(String maximoKey) {
+        this.maximoKey = maximoKey;
     }
 }
