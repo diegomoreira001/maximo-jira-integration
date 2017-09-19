@@ -1,17 +1,9 @@
 package com.dmoreira.prototypes.tools.maximojiraintegration.configurations;
 
-import com.ibm.maximo.oslc.MaximoConnector;
-import com.ibm.maximo.oslc.Options;
-import com.ibm.maximo.oslc.OslcException;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.annotation.PreDestroy;
-import java.io.IOException;
-
 /**
- * DevStack Innovation
- * <p>
+ *
  * Created by dmoreira <diegomoreira00@gmail.com> on 9/3/17.
  */
 @Configuration

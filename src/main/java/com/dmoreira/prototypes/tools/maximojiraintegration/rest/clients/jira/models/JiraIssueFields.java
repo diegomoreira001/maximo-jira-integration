@@ -5,8 +5,7 @@ import com.dmoreira.prototypes.tools.maximojiraintegration.rest.clients.jira.mod
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * DevStack Innovation
- * <p>
+ *
  * Created by dmoreira <diegomoreira00@gmail.com> on 9/3/17.
  */
 public class JiraIssueFields {

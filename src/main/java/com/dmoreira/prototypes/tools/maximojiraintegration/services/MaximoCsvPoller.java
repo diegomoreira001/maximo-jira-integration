@@ -18,7 +18,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FilenameFilter;
-import java.nio.file.Path;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -26,15 +25,14 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * DevStack Innovation
- * <p>
+ *
  * Created by dmoreira <diegomoreira00@gmail.com> on 9/3/17.
  */
 @Service
 public class MaximoCsvPoller {
 
     //private Integrator integrator;
-    public static final String JIRA_PROJECT_KEY = "CCHSP";
+    private static final String JIRA_PROJECT_KEY = "CCHSP";
     private JiraRepository jiraRepository;
 
     @Scheduled(fixedDelay = 180000)
@@ -48,9 +46,7 @@ public class MaximoCsvPoller {
 
         String regexFilterString = String.format("maximo_created_%s_.*csv", formattedCurrentDate);
 
-        FilenameFilter filter = (dir, name) -> {
-            return name.matches(regexFilterString);
-        };
+        FilenameFilter filter = (dir, name) -> name.matches(regexFilterString);
 
         File[] polledFiles = file.listFiles(filter);
         if (polledFiles == null || polledFiles.length == 0) {

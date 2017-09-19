@@ -5,8 +5,7 @@ import com.ibm.maximo.oslc.ResourceSet;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * DevStack Innovation
- * <p>
+ *
  * Created by dmoreira <diegomoreira00@gmail.com> on 9/3/17.
  */
 public class MaximoRepositoryImpl implements MaximoRepository {

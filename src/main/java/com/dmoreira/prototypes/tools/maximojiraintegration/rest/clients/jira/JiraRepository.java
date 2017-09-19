@@ -6,28 +6,27 @@ import com.dmoreira.prototypes.tools.maximojiraintegration.rest.clients.jira.mod
 import java.util.List;
 
 /**
- * DevStack Innovation
- * <p>
+ *
  * Created by dmoreira <diegomoreira00@gmail.com> on 9/3/17.
  */
 public interface JiraRepository {
 
-    public void findOne();
+    void findOne();
 
-    public void findById();
+    void findById();
 
     /**
      * Finds all available tickets by date.
      */
-    public void findByDate();
+    void findByDate();
 
-    public List<JiraIssue> findByProjectKeyAndMaximoKey(String projectKey, String maximoKey);
+    List<JiraIssue> findByProjectKeyAndMaximoKey(String projectKey, String maximoKey);
 
-    public void save(CreateHelpDeskIssue issue);
+    void save(CreateHelpDeskIssue issue);
 
-    public void update();
+    void update();
 
-    public void delete();
+    void delete();
 
 
 }

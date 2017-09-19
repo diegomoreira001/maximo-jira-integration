@@ -17,8 +17,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 
 /**
- * DevStack Innovation
- * <p>
+ *
  * Created by dmoreira <diegomoreira00@gmail.com> on 9/3/17.
  */
 public class JiraIssueRepositoryImpl implements JiraRepository {
@@ -29,13 +28,11 @@ public class JiraIssueRepositoryImpl implements JiraRepository {
     private URI jiraSearchAPIUri;
 
     public JiraIssueRepositoryImpl(String jiraHost, String jiraIssueAPIPath, String jiraSearchAPIPath) throws URISyntaxException {
-        this.jiraIssueAPIUri = new URI(new StringBuilder()
-                .append(jiraHost)
-                .append(jiraIssueAPIPath).toString());
+        this.jiraIssueAPIUri = new URI(jiraHost +
+                jiraIssueAPIPath);
 
-        this.jiraSearchAPIUri = new URI(new StringBuilder()
-                .append(jiraHost)
-                .append(jiraSearchAPIPath).toString());
+        this.jiraSearchAPIUri = new URI(jiraHost +
+                jiraSearchAPIPath);
     }
 
     @Override
