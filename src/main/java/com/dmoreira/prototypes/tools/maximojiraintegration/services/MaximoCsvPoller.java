@@ -2,10 +2,8 @@ package com.dmoreira.prototypes.tools.maximojiraintegration.services;
 
 import com.dmoreira.prototypes.tools.maximojiraintegration.models.MaximoIssue;
 import com.dmoreira.prototypes.tools.maximojiraintegration.rest.clients.jira.JiraRepository;
+import com.dmoreira.prototypes.tools.maximojiraintegration.rest.clients.jira.builder.RequestBuilder;
 import com.dmoreira.prototypes.tools.maximojiraintegration.rest.clients.jira.models.JiraIssue;
-import com.dmoreira.prototypes.tools.maximojiraintegration.rest.clients.jira.models.JiraIssueFields;
-import com.dmoreira.prototypes.tools.maximojiraintegration.rest.clients.jira.models.JiraIssueType;
-import com.dmoreira.prototypes.tools.maximojiraintegration.rest.clients.jira.models.JiraProject;
 import com.dmoreira.prototypes.tools.maximojiraintegration.rest.clients.jira.models.requests.CreateHelpDeskIssue;
 import com.opencsv.CSVReader;
 import com.opencsv.bean.CsvToBean;
@@ -98,12 +96,11 @@ public class MaximoCsvPoller {
         HeaderColumnNameTranslateMappingStrategy<MaximoIssue> strategy = new HeaderColumnNameTranslateMappingStrategy<>();
         strategy.setColumnMapping(columnMapping);
 
-        List<MaximoIssue> maximoIssues = null;
+        List<MaximoIssue> maximoIssues;
 
         try {
 
             CSVReader csvReader = new CSVReader(new FileReader(file));
-
             maximoIssues = maximoIssueCsvToBean.parse(strategy, csvReader);
 
         } catch (FileNotFoundException fileE) {
@@ -125,24 +122,10 @@ public class MaximoCsvPoller {
         //If the Issue does not exist already, create a new one
         if (existingIssues == null || existingIssues.isEmpty()) {
 
-            //Create Fields
-            JiraIssueFields fields = new JiraIssueFields();
-            fields.setMaximoKey(issue.getId());
-            fields.setSummary(issue.getSummary());
-
-            //Set JIRA Project
-            JiraProject jiraProject = new JiraProject();
-            jiraProject.setKey(JIRA_PROJECT_KEY);
-            //Set Issue Type (SR or IN)
-            JiraIssueType jiraIssueType = new JiraIssueType();
-            jiraIssueType.setId();
-
-            fields.setJiraIssueType(jiraIssueType);
-            fields.setJiraProject(jiraProject);
-
-            //Create Issue data
-            CreateHelpDeskIssue createHelpDeskIssue = new CreateHelpDeskIssue();
-            createHelpDeskIssue.setJiraIssueFields(fields);
+            CreateHelpDeskIssue createHelpDeskIssue = new RequestBuilder()
+                    .setMaximoIssue(issue)
+                    .setJiraProyectKey(JIRA_PROJECT_KEY)
+                    .build(CreateHelpDeskIssue.class);
 
             //Create Issue in JIRA
             jiraRepository.save(createHelpDeskIssue);
